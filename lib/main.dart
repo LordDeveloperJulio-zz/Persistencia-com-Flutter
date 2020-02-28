@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:persistencia_sqlite/database/app_database.dart';
+import 'package:persistencia_sqlite/models/contact.dart';
 import 'package:persistencia_sqlite/screens/dashboard.dart';
 
-void main() => runApp(MyApp());
+void main(){
+  runApp(MyApp());
+  save(Contact(0, 'Julio', 2020)).then((id){
+    findAll().then((contacts) => debugPrint(contacts.toString()));
+  });
+} 
 
 class MyApp extends StatelessWidget {
   @override
