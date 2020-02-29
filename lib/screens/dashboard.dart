@@ -7,7 +7,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: Text('Painel de controle'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -15,19 +15,18 @@ class Dashboard extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.network(
-                'https://image.freepik.com/fotos-gratis/imagens-em-close-up-de-varios-aparelhos-de-cartao-de-credito_1150-16364.jpg'),
+            child: Image.network('https://image.freepik.com/fotos-gratis/imagens-em-close-up-de-varios-aparelhos-de-cartao-de-credito_1150-16365.jpg'),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Material(
-              color: Colors.amber,
+              color: Theme.of(context).primaryColor,
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(
-                    (MaterialPageRoute(
+                    MaterialPageRoute(
                       builder: (context) => ContactsList(),
-                    )),
+                    ),
                   );
                 },
                 child: Container(
@@ -35,15 +34,27 @@ class Dashboard extends StatelessWidget {
                   height: 100,
                   width: 150,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Icon(Icons.people, color: Colors.white, size: 24.0,),
-                      Text('Contatos', style: TextStyle(color: Colors.white, fontSize: 16.0,)),
+                      Icon(
+                        Icons.people,
+                        color: Colors.white,
+                        size: 24.0,
+                      ),
+                      Text(
+                        'Contatos',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      )
                     ],
                   ),
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );

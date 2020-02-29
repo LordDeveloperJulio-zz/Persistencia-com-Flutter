@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:persistencia_sqlite/database/app_database.dart';
+import 'package:persistencia_sqlite/database/dao/contact_dao.dart';
 import 'package:persistencia_sqlite/models/contact.dart';
 
 import 'contact_form.dart';
 
 class ContactsList extends StatelessWidget {
+
+  final ContactDao _dao = ContactDao();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +16,7 @@ class ContactsList extends StatelessWidget {
       ),
       body: FutureBuilder<List<Contact>>(
         initialData: List(),
-        future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
+        future: _dao.findAll(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -25,7 +28,7 @@ class ContactsList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     CircularProgressIndicator(),
-                    Text('Carregando'),
+                    Text('Carregando')
                   ],
                 ),
               );
@@ -48,15 +51,15 @@ class ContactsList extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context)
-              .push(
-                MaterialPageRoute(
-                  builder: (context) => ContactForm(),
-                ),
-              )
-              .then((newContact) => debugPrint(newContact.toString()));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ContactForm(),
+            ),
+          );
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+        ),
       ),
     );
   }

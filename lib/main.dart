@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:persistencia_sqlite/database/app_database.dart';
-import 'package:persistencia_sqlite/models/contact.dart';
 import 'package:persistencia_sqlite/screens/dashboard.dart';
 
 void main() {
